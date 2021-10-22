@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using TechTest.Controllers.Models;
 using TechTest.Repositories;
-using TechTest.Repositories.Models;
 
 namespace TechTest.Controllers
 {
@@ -53,7 +52,9 @@ namespace TechTest.Controllers
             existing.LastName = personUpdate.LastName;
             existing.Authorised = personUpdate.Authorised;
             existing.Enabled = personUpdate.Enabled;
-            existing.Colours = personUpdate.Colours;
+
+            var colours = personUpdate.Colours.GroupBy(x => x.Id).Select(x => x.First()).ToList();
+            existing.Colours = colours;
 
             var updated = this.PersonRepository.Update(existing);
 
