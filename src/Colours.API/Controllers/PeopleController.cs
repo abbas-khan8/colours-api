@@ -48,12 +48,12 @@ namespace TechTest.Controllers
                 return this.NotFound();
             }
 
+            var colours = personUpdate.Colours.GroupBy(x => x.Id).Select(x => x.First()).ToList();
+
             existing.FirstName = personUpdate.FirstName;
             existing.LastName = personUpdate.LastName;
             existing.Authorised = personUpdate.Authorised;
-            existing.Enabled = personUpdate.Enabled;
-
-            var colours = personUpdate.Colours.GroupBy(x => x.Id).Select(x => x.First()).ToList();
+            existing.Enabled = personUpdate.Enabled;            
             existing.Colours = colours;
 
             var updated = this.PersonRepository.Update(existing);
