@@ -13,3 +13,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
+
+- task: PublishBuildArtifacts@1
