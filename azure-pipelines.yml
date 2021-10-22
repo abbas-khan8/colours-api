@@ -1,0 +1,15 @@
+trigger: 
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+container: mcr.microsoft.com/dotnet/sdk:5.0
+
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
